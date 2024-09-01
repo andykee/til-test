@@ -26,6 +26,9 @@ jobs:
         with:
           python-version: '3.10' 
       - run: python .github/scripts/build.py
+      - run: pwd
+      - run: ls
+      - run: ls .github/scripts
 
 
   publish:
