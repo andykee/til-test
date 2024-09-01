@@ -15,26 +15,27 @@ permissions:
   contents: read   
       
 jobs:
-  name: Build
-  runs-on: ubuntu-latest
-  steps:
-    - name: Clone repo
-      uses: actions/checkout@v4
+  build:
+    name: Build
+    runs-on: ubuntu-latest
+    steps:
+      - name: Clone repo
+        uses: actions/checkout@v4
         
-    - uses: actions/setup-python@v5
-      with:
-        python-version: '3.10' 
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.10' 
 
-    - name: Build
-      run: python .github/scripts/build.py
+      - name: Build
+        run: python .github/scripts/build.py
 
-    - name: Configure AWS credentials
-      uses: aws-actions/configure-aws-credentials@v4
-      with:
-        role-to-assume: arn:aws:iam::826183391955:role/github_actions
-        role-session-name: publish
-        aws-region: ${{ env.AWS_REGION }}
-
-    - name: Upload to S3
-      working-directory: ${{ env.applicationfolder }}
-      run: aws s3 cp *.txt s3://${{ env.S3BUCKET }}/
+      - name: Configure AWS credentials
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          role-to-assume: arn:aws:iam::826183391955:role/github_actions
+          role-session-name: publish
+          aws-region: ${{ env.AWS_REGION }}
+  
+      - name: Upload to S3
+        working-directory: ${{ env.applicationfolder }}
+        run: aws s3 cp *.txt s3://${{ env.S3BUCKET }}/
