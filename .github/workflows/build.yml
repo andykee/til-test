@@ -21,7 +21,7 @@ jobs:
     name: Build
     runs-on: ubuntu-latest
     env: 
-      BUNDLE_GEMFILE: ${{ github.workspace }}/.github/theme/.gemfile
+      BUNDLE_GEMFILE: ${{ github.workspace }}/.github/theme/Gemfile
     steps:
       - name: Clone repo
         uses: actions/checkout@v4
