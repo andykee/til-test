@@ -40,6 +40,9 @@ jobs:
           bundler-cache: true # runs 'bundle install' and caches installed gems automatically
       - run: bundle exec jekyll build
 
+      - run: ls
+      - run: ls _site
+
       - name: Configure AWS credentials
         uses: aws-actions/configure-aws-credentials@v4
         with:
