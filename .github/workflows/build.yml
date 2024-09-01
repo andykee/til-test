@@ -40,15 +40,13 @@ jobs:
           bundler-cache: true # runs 'bundle install' and caches installed gems automatically
       - run: bundle exec jekyll build
 
-      
-
-      #- name: Configure AWS credentials
-      #  uses: aws-actions/configure-aws-credentials@v4
-      #  with:
-      #    role-to-assume: arn:aws:iam::826183391955:role/github_actions
-      #    role-session-name: publish
-      #    aws-region: ${{ env.AWS_REGION }}
+      - name: Configure AWS credentials
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          role-to-assume: arn:aws:iam::826183391955:role/github_actions
+          role-session-name: publish
+          aws-region: ${{ env.AWS_REGION }}
   
-      #- name: Upload to S3
-      #  working-directory: ${{ env.applicationfolder }}
-      #  run: aws s3 cp *.txt s3://${{ env.S3_BUCKET }}/
+      - name: Upload to S3
+        working-directory: ${{ env.applicationfolder }}
+        run: aws s3 cp _site/* s3://${{ env.S3_BUCKET }}/
