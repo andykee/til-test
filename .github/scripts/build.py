@@ -1,4 +1,3 @@
-import datetime
+import os
 
-with open('build.txt', 'w+') as f:
-  f.write(f'{datetime.datetime.now()}')
+print(os.environ['GITHUB_WORKSPACE'])
