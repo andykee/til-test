@@ -1,8 +1,12 @@
 name: Build and publish
 
 on:
-  schedule:
-    - cron: '*/15 * * * *'
+  # Runs on pushes targeting the default branch
+  push:
+    branches: [$default-branch]
+
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
 
 env:
   AWS_REGION : us-west-2
@@ -16,24 +20,28 @@ jobs:
   build:
     name: Build
     runs-on: ubuntu-latest
+    env: 
+      BUNDLE_GEMFILE: ${{ github.workspace }}/.github/theme/.gemfile
     steps:
       - name: Clone repo
         uses: actions/checkout@v4
-        
-      - uses: actions/setup-python@v5
-        with:
-          python-version: '3.10' 
 
-      - name: Build
-        run: python .github/scripts/build.py
-
-      - name: Configure AWS credentials
-        uses: aws-actions/configure-aws-credentials@v4
+      - uses: ruby/setup-ruby@v1
         with:
-          role-to-assume: arn:aws:iam::826183391955:role/github_actions
-          role-session-name: publish
-          aws-region: ${{ env.AWS_REGION }}
+          ruby-version: '3.3' # Not needed with a `.ruby-version` or `.tool-versions`
+          bundler-cache: true # runs 'bundle install' and caches installed gems automatically
+      - run: bundle exec rake
+
+      #- name: Build
+      #  run: python .github/scripts/build.py
+
+      #- name: Configure AWS credentials
+      #  uses: aws-actions/configure-aws-credentials@v4
+      #  with:
+      #    role-to-assume: arn:aws:iam::826183391955:role/github_actions
+      #    role-session-name: publish
+      #    aws-region: ${{ env.AWS_REGION }}
   
-      - name: Upload to S3
-        working-directory: ${{ env.applicationfolder }}
-        run: aws s3 cp *.txt s3://${{ env.S3_BUCKET }}/
+      #- name: Upload to S3
+      #  working-directory: ${{ env.applicationfolder }}
+      #  run: aws s3 cp *.txt s3://${{ env.S3_BUCKET }}/
