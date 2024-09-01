@@ -27,14 +27,20 @@ jobs:
       - name: Clone repo
         uses: actions/checkout@v4
 
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.10' 
+
+      - name: Build
+        run: python ${{ github.workspace }}/.github/scripts/build.py
+
       - uses: ruby/setup-ruby@v1
         with:
           ruby-version: '3.3' # Not needed with a `.ruby-version` or `.tool-versions`
           bundler-cache: true # runs 'bundle install' and caches installed gems automatically
       - run: bundle exec jekyll build
 
-      #- name: Build
-      #  run: python .github/scripts/build.py
+      
 
       #- name: Configure AWS credentials
       #  uses: aws-actions/configure-aws-credentials@v4
