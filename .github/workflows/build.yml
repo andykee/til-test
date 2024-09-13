@@ -35,12 +35,10 @@ jobs:
         
       - name: Build
         run: |
-          mkdir ${{ github.workspace }}/output
-          python ${{ github.workspace }}/.github/pelican/build.py ${{ github.workspace }} ${{ github.workspace }}/output
+          mkdir ${{ github.workspace }}/.github/output
+          python ${{ github.workspace }}/.github/pelican/build.py ${{ github.workspace }} ${{ github.workspace }}/.github/output
 
-
-      - run: ls
-      - run: ls output
+      - run: ls ${{ github.workspace }}/.github/output
 
 
       - name: Configure AWS credentials
