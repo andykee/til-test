@@ -34,10 +34,11 @@ jobs:
         run: pip install -r ${{ github.workspace }}/.github/pelican/requirements.txt
         
       - name: Build
-        run: python ${{ github.workspace }}/.github/pelican/build.py
+        run: python ${{ github.workspace }}/.github/pelican/build.py ${{ github.workspace }} ${{ github.workspace }}/output
 
 
       - run: ls
+      - run: ls output
 
 
       - name: Configure AWS credentials
