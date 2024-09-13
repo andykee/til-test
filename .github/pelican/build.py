@@ -1,12 +1,15 @@
 import glob
 import os
 import re
+import subprocess
 import sys
 
 
 EXCLUDE_DIRS = ['.github', '__pycache__']
 
 TITLE_PATTERN = re.compile('#(.*)\n')
+
+GIT_DATE_CMD = 'git ls-tree -r --name-only HEAD -z | TZ=UTC xargs -0n1 -I_ git --no-pager log -1 --date=iso-local --format="%ad _" -- _'
 
 def build(inputdir, outputdir):
 
@@ -18,7 +21,10 @@ def build(inputdir, outputdir):
     for f in outfiles:
         os.remove(f)
 
-
+    # get dates for all posts
+    
+    git_dump = subprocess.run(GIT_DATE_CMD)#, capture_output=True, text=True).stdout
+    #git_dump
     
 
     for d in content_dirs:
