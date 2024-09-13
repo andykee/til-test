@@ -10,6 +10,9 @@ on:
   workflow_dispatch:
 
 env:
+  PELICAN_DIR: ${{ github.workspace }}/.github/pelican
+  CONTENT_DIR: ${{ github.workspace }}/.github/content
+  OUTPUT_DIR: ${{ github.workspace }}/.github/output
   AWS_REGION : us-west-2
   S3_BUCKET: ak-dump
   
@@ -35,10 +38,12 @@ jobs:
         
       - name: Build
         run: |
-          mkdir ${{ github.workspace }}/.github/output
-          python ${{ github.workspace }}/.github/pelican/build.py ${{ github.workspace }} ${{ github.workspace }}/.github/output
+          mkdir ${{ evv.CONTENT_DIR }}
+          mkdir ${{ env.OUTPUT_DIR }}
+          python ${{ env.PELICAN_DIR }}/build.py ${{ github.workspace }} ${{ env.CONTENT_DIR }}
 
-      - run: ls ${{ github.workspace }}/.github/output
+      - run: ls ${{ github.workspace }}/.github
+      - run: ls ${{ env.CONTENT_DIR }}
 
 
       - name: Configure AWS credentials
