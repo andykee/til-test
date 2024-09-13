@@ -34,8 +34,9 @@ jobs:
         run: pip install -r ${{ github.workspace }}/.github/pelican/requirements.txt
         
       - name: Build
-        run: mkdir ${{ github.workspace }}/output
-        run: python ${{ github.workspace }}/.github/pelican/build.py ${{ github.workspace }} ${{ github.workspace }}/output
+        run: |
+          mkdir ${{ github.workspace }}/output
+          python ${{ github.workspace }}/.github/pelican/build.py ${{ github.workspace }} ${{ github.workspace }}/output
 
 
       - run: ls
