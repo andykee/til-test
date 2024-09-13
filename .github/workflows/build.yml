@@ -38,7 +38,7 @@ jobs:
         
       - name: Build
         run: |
-          mkdir ${{ evv.CONTENT_DIR }}
+          mkdir ${{ env.CONTENT_DIR }}
           mkdir ${{ env.OUTPUT_DIR }}
           python ${{ env.PELICAN_DIR }}/build.py ${{ github.workspace }} ${{ env.CONTENT_DIR }}
 
