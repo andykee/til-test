@@ -23,7 +23,7 @@ def build(inputdir, outputdir):
 
     # get dates for all posts
     
-    git_dump = subprocess.run(GIT_DATE_CMD)#, capture_output=True, text=True).stdout
+    #git_dump = subprocess.run(GIT_DATE_CMD)#, capture_output=True, text=True).stdout
     #git_dump
     
 
