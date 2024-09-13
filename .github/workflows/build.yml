@@ -41,9 +41,10 @@ jobs:
           mkdir ${{ env.CONTENT_DIR }}
           mkdir ${{ env.OUTPUT_DIR }}
           python ${{ env.PELICAN_DIR }}/build.py ${{ github.workspace }} ${{ env.CONTENT_DIR }}
+          pelican ${{ env.CONTENT_DIR }} -o ${{ env.OUTPUT_DIR }} -s ${{ env.PELICAN_DIR }}/pelicanconf.py
 
-      - run: ls ${{ github.workspace }}/.github
       - run: ls ${{ env.CONTENT_DIR }}
+      - run: ls ${{ env.OUTPUT_DIR }}
 
 
       - name: Configure AWS credentials
