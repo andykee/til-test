@@ -1,0 +1,1 @@
+# Permanently removing files from git
