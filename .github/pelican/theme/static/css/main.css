@@ -523,6 +523,24 @@ pre code {
 
 */
 
+/* PAGEFIND */
+:root {
+    --pagefind-ui-scale: 1;
+    --pagefind-ui-primary: var(--text-color);
+    --pagefind-ui-text: var(--text-color);
+    --pagefind-ui-background: var(--background-color);
+    --pagefind-ui-border: var(--border-color);
+    --pagefind-ui-tag: #eeeeee;
+    --pagefind-ui-border-width: 1px;
+    --pagefind-ui-border-radius: 0.25rem;
+    --pagefind-ui-image-border-radius: 8px;
+    --pagefind-ui-image-box-ratio: 3 / 2;
+    --pagefind-ui-font: IBM Plex Mono;
+}
+
+
+
+
 .search-input {
     display: block;
     width: 100%;
