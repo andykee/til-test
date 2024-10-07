@@ -1,48 +1,47 @@
 import glob
 import os
 import re
+import shutil
 import subprocess
 import sys
 
 
-EXCLUDE_DIRS = ['.github', '__pycache__']
-
+EXCLUDE_DIRS = ['.github', '.git', '__pycache__']
+IMAGE_EXTENSIONS = ['jpeg', 'jpg', 'png', 'gif', 'bmp', 'svg', 'webp']
 TITLE_PATTERN = re.compile('#(.*)\n')
 
-GIT_DATE_CMD = 'git ls-tree -r --name-only HEAD -z | TZ=UTC xargs -0n1 -I_ git --no-pager log -1 --date=iso-local --format="%ad _" -- _'
 
 def build(inputdir, outputdir):
 
     subdirs = [f.path for f in os.scandir(inputdir) if f.is_dir()]
     content_dirs = [d for d in subdirs if d.split('/')[-1] not in EXCLUDE_DIRS]
+    images = []
 
     # clean out output dir
     outfiles = glob.glob(os.path.join(outputdir, '*'))
     for f in outfiles:
         os.remove(f)
 
-    # get dates for all posts
-    
-    git_dump = subprocess.run(GIT_DATE_CMD)#, capture_output=True, text=True).stdout
-    #git_dump
-    
-
     for d in content_dirs:
-        infiles = glob.glob(os.path.join(d, '*.md'))
-        category = d.split('/')[-1]
 
-        for infile in infiles:
+        category = d.split('/')[-1]
+        content_files = glob.glob(os.path.join(d, '*.md'))
+
+        for e in IMAGE_EXTENSIONS:
+            GLOB_STR = os.path.join(d, f'*.{e}')
+            for image in glob.glob(GLOB_STR):
+                print('copying', image, outputdir)
+                shutil.copy(image, outputdir)
+
+        for infile in content_files:
             outfile = os.path.join(outputdir, infile.split('/')[-1])
-            
-            # get time from commit hash
-            # git ls-tree -r --name-only HEAD -z | TZ=UTC xargs -0n1 -I_ git --no-pager log -1 --date=iso-local --format="%ad _" -- _
-            date = '2024-09-12'
+            date = git_commit_date(infile)
 
             with open(infile, 'r') as i:
                 # a valid note must have a markdown H1 as its first line
                 title = i.readline()
                 if title[0:2] != '# ':
-                    print('Invalid note! Skipping...')
+                    print(f'Invalid note {infile}! Skipping...')
                 else:
                     title = title[2:].rstrip()
 
@@ -53,11 +52,20 @@ def build(inputdir, outputdir):
                     with open(outfile, 'w') as o:
 
                         o.write(f'Title: {title}\n')
-                        o.write(f'Date: {date}\n')
+                        if date:
+                            o.write(f'Date: {date}\n')
                         o.write(f'Category: {category}\n')
 
                         for line in i:
                             o.write(line)
+    
+
+def git_commit_date(filename):
+    CMD = f'git log -1 --format=%ci {filename}'
+    resp = subprocess.run(CMD, shell=True, capture_output=True, text=True)
+    if resp.stdout:
+        datestr, *_ = resp.stdout.split()
+        return datestr
 
 
 if __name__ == '__main__':
