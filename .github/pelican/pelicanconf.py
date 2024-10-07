@@ -1,3 +1,5 @@
+import datetime
+
 AUTHOR = 'Andy Kee'
 SITENAME = 'AK Notes'
 SITEURL = ""
@@ -10,26 +12,30 @@ DEFAULT_LANG = 'en'
 
 THEME = "theme"
 
+YEAR = datetime.datetime.now().year
+
+PLUGINS = [
+    "pelican.plugins.render_math", # https://github.com/pelican-plugins/render-math
+]
+
+# Top-level pages tp render
+# default is ['index', 'authors', 'categories', 'tags', 'archives']
+DIRECT_TEMPLATES = ['index']
+
+# The following lines suppress the generation of individual categoty and
+# author pages
+AUTHOR_SAVE_AS = ''
+CATEGORY_SAVE_AS = ''
+
+# If no date metadata is available, grab a timestamp from the system
+DEFAULT_DATE = 'fs'
+
 # Feed generation is usually not desired when developing
 FEED_ALL_ATOM = None
 CATEGORY_FEED_ATOM = None
 TRANSLATION_FEED_ATOM = None
 AUTHOR_FEED_ATOM = None
 AUTHOR_FEED_RSS = None
-
-# Blogroll
-LINKS = (
-    ("Pelican", "https://getpelican.com/"),
-    ("Python.org", "https://www.python.org/"),
-    ("Jinja2", "https://palletsprojects.com/p/jinja/"),
-    ("You can modify those links in your config file", "#"),
-)
-
-# Social widget
-SOCIAL = (
-    ("You can add links in your config file", "#"),
-    ("Another social link", "#"),
-)
 
 DEFAULT_PAGINATION = False
 
