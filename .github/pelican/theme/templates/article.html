@@ -5,7 +5,7 @@
 
 {% include 'nav_back.html' %}
 
-  <article data-pagefind-body data-pagefind-index-attrs="{{ article.category }}">
+  <article data-pagefind-body category="{{ article.category }}" data-pagefind-index-attrs="category">
     <header>
       <h1 class="post-title">{{ article.title }}</h1>
 
