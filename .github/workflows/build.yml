@@ -10,6 +10,9 @@ on:
   workflow_dispatch:
 
 env:
+  PELICAN_DIR: ${{ github.workspace }}/.github/pelican
+  CONTENT_DIR: ${{ github.workspace }}/.github/content
+  OUTPUT_DIR: ${{ github.workspace }}/.github/output
   AWS_REGION : us-west-2
   S3_BUCKET: ak-dump
   
@@ -21,8 +24,7 @@ jobs:
   build:
     name: Build
     runs-on: ubuntu-latest
-    env: 
-      BUNDLE_GEMFILE: ${{ github.workspace }}/.github/theme/Gemfile
+
     steps:
       - name: Clone repo
         uses: actions/checkout@v4
@@ -30,19 +32,24 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: '3.10' 
-
-      - name: Build
-        run: python ${{ github.workspace }}/.github/scripts/build.py
-
-      - uses: ruby/setup-ruby@v1
+          
+      - uses: actions/setup-node@v4
         with:
-          ruby-version: '3.3' # Not needed with a `.ruby-version` or `.tool-versions`
-          bundler-cache: true # runs 'bundle install' and caches installed gems automatically
-      - run: bundle exec jekyll build
+          node-version: lts/*
 
-      - run: ls
-      - run: ls _site
+      - name: Install dependencies
+        run: pip install -r ${{ github.workspace }}/.github/pelican/requirements.txt
+        
+      - name: Build
+        run: |
+          mkdir ${{ env.CONTENT_DIR }}
+          mkdir ${{ env.OUTPUT_DIR }}
+          python ${{ env.PELICAN_DIR }}/build.py ${{ github.workspace }} ${{ env.CONTENT_DIR }}
+          pelican ${{ env.CONTENT_DIR }} -o ${{ env.OUTPUT_DIR }} -s ${{ env.PELICAN_DIR }}/pelicanconf.py
 
+      - name: Run Pagefind
+        run: npx pagefind
+        
       - name: Configure AWS credentials
         uses: aws-actions/configure-aws-credentials@v4
         with:
@@ -51,5 +58,5 @@ jobs:
           aws-region: ${{ env.AWS_REGION }}
   
       - name: Upload to S3
-        working-directory: ${{ env.applicationfolder }}
-        run: aws s3 sync _site/ s3://${{ env.S3_BUCKET }}
+      #  working-directory: ${{ github.workspace }}
+        run: aws s3 sync ${{ env.OUTPUT_DIR }} s3://${{ env.S3_BUCKET }}
