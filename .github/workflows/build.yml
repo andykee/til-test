@@ -48,7 +48,7 @@ jobs:
           pelican ${{ env.CONTENT_DIR }} -o ${{ env.OUTPUT_DIR }} -s ${{ env.PELICAN_DIR }}/pelicanconf.py
 
       - name: Run Pagefind
-        run: npx pagefind
+        run: npx pagefind --site ${{ env.OUTPUT_DIR }}
         
       - name: Configure AWS credentials
         uses: aws-actions/configure-aws-credentials@v4
@@ -59,4 +59,4 @@ jobs:
   
       - name: Upload to S3
       #  working-directory: ${{ github.workspace }}
-        run: aws s3 sync ${{ env.OUTPUT_DIR }} s3://${{ env.S3_BUCKET }}
+        run: aws s3 sync ${{ env.OUTPUT_DIR }} s3://${{ env.S3_BUCKET }} --detete
