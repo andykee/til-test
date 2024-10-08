@@ -245,8 +245,9 @@ footer {
     flex-direction: column;
 }
 
-
-
+#search {
+    padding-top: 1rem;
+}
 
 
 .skin-line {
@@ -540,7 +541,7 @@ pre code {
 
 
 
-
+/*
 .search-input {
     display: block;
     width: 100%;
@@ -613,6 +614,8 @@ pre code {
 .block {
     display: block;
 }
+*/
+
 
 #sun-svg, html[data-theme=dark] #moon-svg {
     display: none
