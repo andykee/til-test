@@ -14,7 +14,7 @@ env:
   CONTENT_DIR: ${{ github.workspace }}/.github/content
   OUTPUT_DIR: ${{ github.workspace }}/.github/output
   AWS_REGION : us-west-2
-  S3_BUCKET: ak-dump
+  S3_BUCKET: notes.andykee.com
   
 permissions:
   id-token: write   
