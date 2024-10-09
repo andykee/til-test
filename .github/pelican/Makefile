@@ -68,5 +68,7 @@ devserver-global:
 publish:
 	"$(PELICAN)" "$(INPUTDIR)" -o "$(OUTPUTDIR)" -s "$(PUBLISHCONF)" $(PELICANOPTS)
 
+pagefind:
+	./pagefind --site "$(OUTPUTDIR)"
 
-.PHONY: html help clean regenerate serve serve-global devserver devserver-global publish 
+.PHONY: html help clean regenerate serve serve-global devserver devserver-global publish pagefind
