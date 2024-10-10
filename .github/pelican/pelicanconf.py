@@ -22,10 +22,10 @@ PLUGINS = [
 # default is ['index', 'authors', 'categories', 'tags', 'archives']
 DIRECT_TEMPLATES = ['index']
 
-# The following lines suppress the generation of individual categoty and
+# The following lines suppress the generation of individual category and
 # author pages
 AUTHOR_SAVE_AS = ''
-CATEGORY_SAVE_AS = ''
+#CATEGORY_SAVE_AS = ''
 
 # If no date metadata is available, grab a timestamp from the system
 DEFAULT_DATE = 'fs'
