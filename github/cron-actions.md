@@ -1,4 +1,4 @@
-# Running GitHub Actions on a schedule
+# Scheduling GitHub Actions
 
 In workflow YML file:
 

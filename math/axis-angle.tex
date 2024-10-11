@@ -1,0 +1,37 @@
+\documentclass{standalone}
+\usepackage{tikz}
+
+\definecolor{nordfrost}{RGB}{94,129,172}
+
+\begin{document}
+
+\pgfmathsetmacro\Vx{0.5}
+\pgfmathsetmacro\Vy{0.6}
+\pgfmathsetmacro\Vz{1.2}
+
+\begin{tikzpicture}
+[x  = {(-0.5cm,-0.5cm)},
+ y  = {(0.9659cm,-0.25882cm)},
+ z  = {(0cm,1cm)},
+ scale=3.5]
+
+\coordinate (O) at (0,0,0);
+\coordinate (V) at (\Vx,\Vy,\Vz);
+
+\draw[thick, -latex] (O) -- (1,0,0) node[below left=-3]{$x$};
+\draw[thick, -latex] (O) -- (0,1,0) node[right=-1]{$y$};
+\draw[thick, -latex] (O) -- (0,0,1) node[above=-1]{$z$};
+ 
+\draw[dotted] (V) -- (\Vx,\Vy,0);
+\draw[dotted] (\Vx,\Vy,0) -- (\Vx,0,0);
+\draw[dotted] (\Vx,\Vy,0) -- (0,\Vy,0);
+
+
+\draw[very thick, nordfrost, -latex] (O) -- (V);
+\node[above, text=nordfrost]  at (0.5,0.6,1.2) {\textbf{v}};
+
+\draw[thick, -latex, rotate around={-25:(0.15,0.25,0.6)}] (0.15,0.25,0.6) arc (20:370:0.1);
+\node at (0.15,0.19,0.55) {$\theta$}; 
+
+\end{tikzpicture}
+\end{document}

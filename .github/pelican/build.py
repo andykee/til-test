@@ -1,7 +1,6 @@
 import glob
 import os
 import re
-import shutil
 import subprocess
 import sys
 
@@ -15,9 +14,8 @@ def build(inputdir, outputdir):
 
     subdirs = [f.path for f in os.scandir(inputdir) if f.is_dir()]
     content_dirs = [d for d in subdirs if d.split('/')[-1] not in EXCLUDE_DIRS]
-    images = []
 
-    # clean out output dir
+    # clean out outputdir
     os.makedirs(outputdir, exist_ok=True)
     outfiles = glob.glob(os.path.join(outputdir, '*'))
     for f in outfiles:
@@ -27,12 +25,6 @@ def build(inputdir, outputdir):
 
         category = d.split('/')[-1]
         content_files = glob.glob(os.path.join(d, '*.md'))
-
-        for e in IMAGE_EXTENSIONS:
-            GLOB_STR = os.path.join(d, f'*.{e}')
-            for image in glob.glob(GLOB_STR):
-                print('copying', image, outputdir)
-                shutil.copy(image, outputdir)
 
         for infile in content_files:
             outfile = os.path.join(outputdir, infile.split('/')[-1])
