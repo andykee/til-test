@@ -155,13 +155,11 @@ header nav {
     justify-content: space-between;
 }
 
-/*
 @media (min-width: 640px) {
     header nav {
         flex-direction: row;
     }
 }
-*/
 
 main {
     margin-left: auto;
@@ -240,7 +238,7 @@ footer {
 }
 
 .logo {
-    position: absolute;
+    /*position: absolute;*/
     padding-top: .25rem;
     padding-bottom: .25rem;
     font-size: 1.25rem;
