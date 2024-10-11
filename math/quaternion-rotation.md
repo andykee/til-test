@@ -1,4 +1,5 @@
 # Quaternion rotation
+Status: draft
 
 Quaternions are hypercomplex numbers with the form 
 
@@ -10,7 +11,7 @@ It is easier to understand *rotation quaternions* after first understanding the 
 
 ![axis-angle](axis-angle.png)
 
-Although the axis-angle representation adequately describes 3D rotations, using quaternions instead proves to be far simpler and more numerically efficient. Unfortunately quaternions are a difficult concept to grasp. Mercifully a deep understanding is not required to use them for 3D rotations. A few basic properties will suffice. 
+Although the axis-angle representation adequately describes 3D rotations, using quaternions instead proves to be far simpler and more numerically efficient. Unfortunately quaternions are a difficult concept to grasp. Mercifully a deep understanding is not required to use them for 3D rotations. Grasping the basics will suffice. 
 
 
 

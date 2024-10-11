@@ -446,63 +446,6 @@ pre code {
 }
 
 
-
-/* --- SEARCH --- */
-
-
-
-
-
-
-
-
-/*
-.main-content h1 {
-    margin-top: 1rem;
-    margin-bottom: 1rem;
-    display: inline-block;
-    font-size: 1.875rem;
-    line-height: 2.25rem;
-    font-weight:700
-}
-
-@media (min-width: 640px) {
-    .main-content h1 {
-        margin-top: 2rem;
-        margin-bottom: 2rem;
-        font-size: 1.875rem;
-        line-height:2.25rem;
-    }
-}
-    
-
-.main-content h2 {
-    font-size: 1.125rem;
-    line-height: 1.75rem;
-    font-weight: 600;
-}
-
-.main-content h2 a {
-    text-decoration: none;
-}
-
-.main-content h2 a:hover {
-    text-decoration: underline;
-}
-
-*/
-
-
-
-
-
-
-/*
-.categories-wrap {
-    padding-top: 1rem;
-}
-    */
-
 #categories {
     
     margin-top: 0.75rem;
@@ -521,114 +464,8 @@ pre code {
     font-weight: 500;
     text-decoration-style: dashed !important;
     text-underline-offset: 6px;
-}
-
-
-
-/*
-.text-lg {
-    font-size: 1.125rem;
-    line-height: 1.75rem;
-}
-
-.pr-2 {
-    padding-right: 0.5rem;
-}
-
-*/
-
-/* PAGEFIND */
-:root {
-    --pagefind-ui-scale: 1;
-    --pagefind-ui-primary: var(--text-color);
-    --pagefind-ui-text: var(--text-color);
-    --pagefind-ui-background: var(--background-color);
-    --pagefind-ui-border: var(--border-color);
-    --pagefind-ui-tag: #eeeeee;
-    --pagefind-ui-border-width: 1px;
-    --pagefind-ui-border-radius: 0.25rem;
-    --pagefind-ui-image-border-radius: 8px;
-    --pagefind-ui-image-box-ratio: 3 / 2;
-    --pagefind-ui-font: IBM Plex Mono;
-}
-
-
-
-/*
-.search-input {
-    display: block;
-    width: 100%;
-    padding-top: 0.75rem;
-    padding-bottom: 0.75rem;
-    padding-left: 2.5rem;
-    padding-right: 0.75rem;
-    background-color: var(--background-color);
-    border-width: 1px;
-    border-color: var(--border-color);
-    border-radius: 0.25rem;
-    font-weight: 500;
-}
-
-.search-input:focus {
-    outline: 2px solid transparent;
-    outline-offset: 2px;
-    border-color: rgba(27, 153, 89, 1) !important;
-}
-
-::-webkit-input-placeholder {
-    font-style: italic;
- }
- :-moz-placeholder {
-    font-style: italic;  
- }
- ::-moz-placeholder {
-    font-style: italic;  
- }
- :-ms-input-placeholder {  
-    font-style: italic; 
- }
-
-
-
-
-.absolute {
-    position: absolute;
-}
-
-.inset-y-0 {
-    top: 0;
-    bottom: 0;
-}
-
-.left-0 {
-    left: 0;
-}
-
-.flex {
-    display: flex;
-}
-
-.pl-2 {
     padding-left: 0.5rem;
 }
-
-.items-center {
-    align-items: center;
-}
-
-.opacity-75 {
-    opacity: 0.75;
-}
-
-.relative {
-    position: relative;
-}
-
-.block {
-    display: block;
-}
-*/
-
 
 #sun-svg, html[data-theme=dark] #moon-svg {
     display: none
@@ -638,20 +475,7 @@ pre code {
     display: block
 }
 
-
-
 #theme-toggle svg:hover {
     --tw-rotate: 12deg;
     transform:rotate(var(--tw-rotate));
-}
-
-
-
-
-
-
-/* may not be needed  if we go with search category */
-.hidden {
-    display: none;
-    visibility: hidden;
 }
