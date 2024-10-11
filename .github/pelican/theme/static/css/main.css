@@ -46,18 +46,6 @@ a {
     text-decoration: none;    
 }
 
-
-
-/*a:hover {
-    transform: translate(0, -.125rem);
-}*/
-
-/* this isn't universal
-a:hover {
-    color: rgb(27, 153, 89);
-}
-*/
-
 p {
     margin-top: 1.25em;
     margin-bottom:1.25em
@@ -144,38 +132,6 @@ thead th:first-child, tbody td:first-child, tfoot td:first-child {
     padding-left: 0.5714286em;
 }
 
-/*pre {
-    border-width: 1px;
-    border-color: var(--border-color);
-    line-height: 1.7142857;
-    margin-top: 1.7142857em;
-    margin-bottom: 1.7142857em;
-    border-radius: .375rem;
-    padding-top: .8571429em;
-    padding-inline-end: 1.1428571em;
-    padding-bottom: .8571429em;
-    padding-inline-start:1.1428571em
-}
-
-pre code {
-    background-color: transparent;
-    border-width: 0;
-    border-radius: 0;
-    padding: 0;
-    font-weight: inherit;
-    color: inherit;
-    font-size: inherit;
-    font-family: inherit;
-    line-height:inherit
-}
-
-code {
-    text-wrap-mode: wrap;
-    word-break: keep-all;
-
-}
-*/
-
 code {
     text-wrap-mode: wrap;
     word-break: keep-all;
@@ -199,11 +155,13 @@ header nav {
     justify-content: space-between;
 }
 
+/*
 @media (min-width: 640px) {
     header nav {
         flex-direction: row;
     }
 }
+*/
 
 main {
     margin-left: auto;
