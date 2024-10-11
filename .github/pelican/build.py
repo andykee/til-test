@@ -18,6 +18,7 @@ def build(inputdir, outputdir):
     images = []
 
     # clean out output dir
+    os.makedirs(outputdir, exist_ok=True)
     outfiles = glob.glob(os.path.join(outputdir, '*'))
     for f in outfiles:
         os.remove(f)
