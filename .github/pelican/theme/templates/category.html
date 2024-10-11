@@ -11,7 +11,7 @@
 {% for article in articles_page.object_list %}
         <article>
             <span>{{ article.date|strftime('%Y-%m-%d') }}</span>
-            <a class=""title" href="{{ SITEURL }}/{{ article.url }}">{{ article.title }}</a>
+            <a class="title" href="{{ SITEURL }}/{{ article.url }}">{{ article.title }}</a>
         </article>
 {% endfor %}
 

@@ -216,7 +216,9 @@ footer {
     padding-right: 1rem;
 }
 
-
+a.title {
+    padding-left: 0.1rem;
+}
 
 /* --- HEADER --- */
 
@@ -420,7 +422,6 @@ pre code {
     font-weight: 500;
     text-decoration-style: dashed !important;
     text-underline-offset: 6px;
-    padding-left: 0.5rem;
 }
 
 #sun-svg, html[data-theme=dark] #moon-svg {
